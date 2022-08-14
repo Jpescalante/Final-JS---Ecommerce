@@ -1,0 +1,16 @@
+{
+  "name": "final",
+  "version": "1.0.0",
+  "description": "Proyecto Final Coderhouse Js",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Escalante Jonathan",
+  "license": "ISC",
+  "dependencies": {
+    "animate.css": "^4.1.1",
+    "jquery": "^3.6.0",
+    "sweetalert2": "^11.4.26"
+  }
+}
