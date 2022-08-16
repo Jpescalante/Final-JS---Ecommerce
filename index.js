@@ -2,16 +2,16 @@ const carShop = document.querySelector(".cart-items");
 const priceOfPay = document.querySelector(".total-price");
 
 const saveLs = () => {
-  //Setea productos y precio total en localstorage
+//setea productos y precio total en localstorage
   localStorage.setItem("Product", carShop.innerHTML);
   localStorage.setItem("Price", priceOfPay.innerHTML);
 };
-//Busca y trae los elementos del localstorage
+//busca y trae los elementos del localstorage
 const catchCarShop = () => {
   carShop.innerHTML = localStorage.getItem("Product");
   priceOfPay.innerHTML = localStorage.getItem("Price");
 };
-
+//calcula el precio de todos los items agregados al carrito
 const totalPrice = async () => {
   let price = 0;
   const allCarShop = document.querySelectorAll(".cart-item");
@@ -21,23 +21,22 @@ const totalPrice = async () => {
   });
   priceOfPay.innerHTML = `${Math.round(price)}`;
 };
-
+//crea la imagen de cada producto
 function createProductImageElement(imageSource) {
   const img = document.createElement("img");
   img.className = "item-image";
   img.src = imageSource;
   return img;
 }
-
+//crea un elemento customizado
 function createCustomElement(element, className, innerText) {
   const e = document.createElement(element);
   e.className = className;
   e.innerText = innerText;
   return e;
 }
-
+//elimina productos del carrito al hacer click. Modifica el precio total
 function cartItemClickListener(event) {
-  //Elimina un elemento del carrito al hacer click
   const evento = event.target;
   evento.remove();
   totalPrice();
@@ -46,8 +45,8 @@ function cartItemClickListener(event) {
 
 carShop.addEventListener("click", cartItemClickListener);
 
+//crea los elementos en el carrito. Modifica el precio total
 function createCartItemElement({ id: sku, title: name, price: salePrice }) {
-  //Crea el elemento en el carrito
   const li = document.createElement("li");
   li.className = "cart-item";
   li.innerText = `❌,  ${name}.
@@ -64,9 +63,8 @@ function getSkuFromProductItem(item) {
   return item.querySelector("span.item-sku").innerText;
 }
 
+//Agrega el producto al carrito
 const addCart = (event) => {
-  //Agrega el producto al carrito
-
   const sectionItem = event.target.parentNode;
   const id = getSkuFromProductItem(sectionItem);
   fetch(`https://api.mercadolibre.com/items/${id}`)
@@ -85,9 +83,8 @@ const addCart = (event) => {
 };
 
 const buttonEmptyCar = document.querySelector(".empty-cart");
-
+//vacia todo el carrito
 const emptyCar = () => {
-  //Vacia todo el carrito
   carShop.innerHTML = "";
   totalPrice();
   saveLs();
@@ -95,8 +92,8 @@ const emptyCar = () => {
 
 buttonEmptyCar.addEventListener("click", emptyCar);
 
+//Crea la "card" de cada item con su botón para agregar
 function createProductItemElement({ id: sku, title: name, thumbnail: image }) {
-  //Crea la "card" de cada item con su botón para agregar
   const section = document.createElement("section");
   section.className = "item";
 
@@ -118,10 +115,9 @@ function createProductItemElement({ id: sku, title: name, thumbnail: image }) {
 const loadingId = document.querySelector(".loading");
 const itemsSection = document.querySelector(".items");
 
+//se conecta a la API y obtiene los elementos de consulta. Agrega cada Item
 const fetchProducts = (query) => {
-  //Se conecta a la API y obtiene el elemento de consulta
-  //Coloca el elemento dentro de .items
-  fetch(`https://api.mercadolibre.com/sites/MLA/search?q=${query}`) // llama a la API
+  fetch(`https://api.mercadolibre.com/sites/MLA/search?q=${query}`)
     .then((response) => response.json())
     .then((Products) => {
       Products.results.forEach((item) => {
@@ -139,7 +135,7 @@ const getProducts = async () => {
   }
 };
 
-// Funciones de búsqueda de productos. Con 'Enter' o Click
+//función de búsqueda de productos. Con 'Enter' o Click en el botón
 const searchInput = document.querySelector("#input-search");
 const searchButton = document.querySelector(".button-search");
 const search = (event) => {
