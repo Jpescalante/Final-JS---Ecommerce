@@ -8,7 +8,7 @@ body {
 button {
   font-size: 1rem;
   font-family: oswald, sans-serif;
-  width: 100%;
+  width: auto;
   padding: 10px;
   margin-top: 10px;
   text-align: center;
@@ -408,6 +408,7 @@ footer .footer-content .footer-redes li i {
   header nav div a {
     margin: 5px;
   }
+  
   footer {
     font-size: 1rem;
   }
@@ -457,7 +458,7 @@ footer .footer-content .footer-redes li i {
     height: auto;
     background-color: #ccd6d2;
   }
-  
+
   .products {
     display: flex;
     align-self: center;
@@ -467,7 +468,7 @@ footer .footer-content .footer-redes li i {
     margin-bottom: 30px;
     background-color: #ccd6d2;
   }
-    
+
   .items {
     display: flex;
     flex-direction: column;
@@ -479,7 +480,7 @@ footer .footer-content .footer-redes li i {
     margin-top: 50px;
     background-color: #bac6c4;
   }
-  
+
   /* Carrito Final */
   .section-carrito {
     display: flex;
